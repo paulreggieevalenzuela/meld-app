@@ -1,0 +1,27 @@
+.nav {
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+
+    button {
+        border: 0;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        margin-right: 10px;
+        padding: 10px 25px;
+        text-transform: uppercase;
+    
+        &:last-child {
+            color: #fff;
+            background: rgb(34, 34, 34);
+            margin-right: 0;
+        }
+    }
+}

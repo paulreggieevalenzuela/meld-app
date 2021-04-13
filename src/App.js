@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useEffect } from 'react';
 
+// Components
+import Nav from './components/Nav';
+import Login from './components/Login';
+import Devices from './components/Devices';
+
+// Context
+import AppContext from './context';
+
+// Utility
+import { getToken } from './utils/session';
 function App() {
+  const token = getToken();
+  const [contextData, setContext] = useContext(AppContext);
+  const { isAuthenticated } = contextData;
+
+  useEffect(() => {
+    if (token) {
+      setContext({
+        ...contextData,
+        isAuthenticated: true,
+      })
+    }
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="app">
+      {!isAuthenticated && ( <Login /> )}
+      {isAuthenticated && ( <Nav /> )}
+      {isAuthenticated && ( <Devices /> )}
+    </main>
   );
 }
 
